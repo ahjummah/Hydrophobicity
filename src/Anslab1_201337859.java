@@ -5,6 +5,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -214,13 +216,100 @@ public class Anslab1_201337859 extends javax.swing.JFrame {
 //                System.out.println("Invalid Input");
 //                output_area.setText("Invalid Input");
 //            } else {
-                String protein = translate(line);
-                output_area.append(protein);
-                output_area.append("\n");
+            String protein = translate(line);
+            output_area.append(protein);
+            output_area.append("\n");
 //            }
         }
 
     }//GEN-LAST:event_translate_buttonActionPerformed
+
+    private static final Map<String, Character> codonsMap;
+
+    static {
+        codonsMap = new HashMap<String, Character>();
+        codonsMap.put("TTT", 'F');
+        codonsMap.put("TTC", 'F');
+
+        codonsMap.put("TTA", 'L');
+        codonsMap.put("TTG", 'L');
+        codonsMap.put("CTT", 'L');
+        codonsMap.put("CTC", 'L');
+        codonsMap.put("CTA", 'L');
+        codonsMap.put("CTG", 'L');
+
+        codonsMap.put("ATT", 'I');
+        codonsMap.put("ATC", 'I');
+        codonsMap.put("ATA", 'I');
+
+        codonsMap.put("ATG", 'M');
+
+        codonsMap.put("GTT", 'V');
+        codonsMap.put("GTC", 'V');
+        codonsMap.put("GTA", 'V');
+        codonsMap.put("GTG", 'V');
+
+        codonsMap.put("TCT", 'S');
+        codonsMap.put("TCC", 'S');
+        codonsMap.put("TCA", 'S');
+        codonsMap.put("TCG", 'S');
+        codonsMap.put("AGT", 'S');
+        codonsMap.put("AGC", 'S');
+
+        codonsMap.put("CCT", 'P');
+        codonsMap.put("CCC", 'P');
+        codonsMap.put("CCA", 'P');
+        codonsMap.put("CCG", 'P');
+
+        codonsMap.put("ACT", 'T');
+        codonsMap.put("ACC", 'T');
+        codonsMap.put("ACA", 'T');
+        codonsMap.put("ACG", 'T');
+
+        codonsMap.put("GCT", 'A');
+        codonsMap.put("GCC", 'A');
+        codonsMap.put("GCA", 'A');
+        codonsMap.put("GCG", 'A');
+
+        codonsMap.put("TAT", 'Y');
+        codonsMap.put("TAC", 'Y');
+
+        codonsMap.put("CAT", 'H');
+        codonsMap.put("CAC", 'H');
+
+        codonsMap.put("CAA", 'Q');
+        codonsMap.put("CAG", 'Q');
+
+        codonsMap.put("AAT", 'N');
+        codonsMap.put("AAC", 'N');
+
+        codonsMap.put("AAA", 'K');
+        codonsMap.put("AAG", 'K');
+
+        codonsMap.put("GAT", 'D');
+        codonsMap.put("GAC", 'D');
+
+        codonsMap.put("GAA", 'E');
+        codonsMap.put("GAG", 'E');
+
+        codonsMap.put("TGT", 'C');
+        codonsMap.put("TGC", 'C');
+
+        codonsMap.put("TGG", 'W');
+
+        codonsMap.put("CGT", 'R');
+        codonsMap.put("CGC", 'R');
+        codonsMap.put("CGA", 'R');
+        codonsMap.put("CGG", 'R');
+        codonsMap.put("AGA", 'R');
+        codonsMap.put("AGG", 'R');
+
+        codonsMap.put("GGT", 'G');
+        codonsMap.put("GGC", 'G');
+        codonsMap.put("GGA", 'G');
+        codonsMap.put("GGG", 'G');
+        //and so on for all codons
+    }
 
     private String translate(String sequence) {
         StringBuilder sb = new StringBuilder();
@@ -228,118 +317,8 @@ public class Anslab1_201337859 extends javax.swing.JFrame {
 
             String codon = sequence.substring(i, i + 3);
             codon = codon.toUpperCase();
+            sb.append(codonsMap.get(codon));
 
-            switch (codon) {
-                case "TTT":
-                case "TTC":
-                    sb.append("F");
-                    break;
-                case "TTA":
-                case "TTG":
-                case "CTT":
-                case "CTC":
-                case "CTA":
-                case "CTG":
-                    sb.append("L");
-                    break;
-                case "ATT":
-                case "ATC":
-                case "ATA":
-                    sb.append("I");
-                    break;
-                case "ATG":
-                    sb.append("M");
-                    break;
-                case "GTT":
-                case "GTC":
-                case "GTA":
-                case "GTG":
-                    sb.append("V");
-                    break;
-                case "TCT":
-                case "TCC":
-                case "TCA":
-                case "TCG":
-                case "AGT":
-                case "AGC":
-                    sb.append("S");
-                    break;
-                case "CCT":
-                case "CCC":
-                case "CCA":
-                case "CCG":
-                    sb.append("P");
-                    break;
-                case "ACT":
-                case "ACC":
-                case "ACA":
-                case "ACG":
-                    sb.append("T");
-                    break;
-                case "GCT":
-                case "GCC":
-                case "GCA":
-                case "GCG":
-                    sb.append("A");
-                    break;
-                case "TAT":
-                case "TAC":
-                    sb.append("Y");
-                    break;
-                case "CAT":
-                case "CAC":
-                    sb.append("H");
-                    break;
-                case "CAA":
-                case "CAG":
-                    sb.append("Q");
-                    break;
-                case "AAT":
-                case "AAC":
-                    sb.append("N");
-                    break;
-                case "AAA":
-                case "AAG":
-                    sb.append("K");
-                    break;
-                case "GAT":
-                case "GAC":
-                    sb.append("D");
-                    break;
-                case "GAA":
-                case "GAG":
-                    sb.append("E");
-                    break;
-                case "TGT":
-                case "TGC":
-                    sb.append("C");
-                    break;
-                case "TGG":
-                    sb.append("W");
-                    break;
-                case "CGT":
-                case "CGC":
-                case "CGA":
-                case "CGG":
-                case "AGA":
-                case "AGG":
-                    sb.append("R");
-                    break;
-                case "GGT":
-                case "GGC":
-                case "GGA":
-                case "GGG":
-                    sb.append("G");
-                    break;
-                case "TAA":
-                case "TGA":
-                case "TAG":
-                    sb.append("-STOP-");
-                    break;
-
-                default:
-
-            }
         }
         return sb.toString();
     }
@@ -385,16 +364,14 @@ public class Anslab1_201337859 extends javax.swing.JFrame {
                         title = line;
                     } else {
                         input += line;
-                        input+="\n";
+                        input += "\n";
                     }
-                    
-                    
 
                 }
             } catch (IOException ex) {
                 Logger.getLogger(Anslab1_201337859.class.getName()).log(Level.SEVERE, null, ex);
             }
-            System.out.println("Title: "+ title);
+            System.out.println("Title: " + title);
             input_area.setText(input);
 
         } catch (FileNotFoundException ex) {
