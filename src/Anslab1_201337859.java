@@ -228,6 +228,10 @@ public class Anslab1_201337859 extends javax.swing.JFrame {
 
     static {
         codonsMap = new HashMap<String, Character>();
+        codonsMap.put("TAA", '/');
+        codonsMap.put("TAG", '/');
+        codonsMap.put("TGA", '/');
+        
         codonsMap.put("TTT", 'F');
         codonsMap.put("TTC", 'F');
 
